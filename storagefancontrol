@@ -579,9 +579,11 @@ def main():
     """
     config = read_config()
     graphite = config['Graphite']
-    print(graphite)
+    if graphite['enabled']:
+        print("Will attempt to log to Graphite.")
+    else:
+        print("Graphite logging is disabled.")
     polling_interval = config['General']['polling_interval']
-    print(f"Polling interval: {polling_interval} seconds")
     exit(0)
     chassis = get_chassis_settings(config)
     pid = get_pid_settings(config)
