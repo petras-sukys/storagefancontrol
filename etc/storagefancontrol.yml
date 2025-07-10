@@ -60,7 +60,7 @@ Controller:
   ports_per_controller: 8
 
 Graphite:
-  enabled: 0
+  enabled: False
   host: target.graphite.com
   port: 2003
   prefix: storagefancontrol

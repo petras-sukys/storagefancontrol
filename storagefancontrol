@@ -570,19 +570,6 @@ def get_chassis_settings(config):
     chassis.fan_control_device = chassis.fan_control_device.split(",")
     return chassis
 
-def get_graphite_settings(config):
-    settings = {}
-    settings['enabled'] = int(config.get("Graphite","enabled"))
-    settings['host'] = str(config.get("Graphite","host"))
-    settings['port'] = int(config.get("Graphite","port"))
-    settings['prefix'] = str(config.get("Graphite","prefix"))
-
-    if settings['enabled'] == 1:
-        settings['enabled'] = True
-    else:
-        settings['enabled'] = False
-    return settings
-
 def main():
     """
     Main function. Contains variables that can be tweaked to your needs.
@@ -591,10 +578,11 @@ def main():
     ajustment for your system(s).
     """
     config = read_config()
-    graphite = get_graphite_settings(config)
-    polling_interval = config.getfloat("General", "polling_interval")
-
-
+    graphite = config.Graphite
+    print(graphite)
+    polling_interval = config.General.polling_interval
+    print(f"Polling interval: {polling_interval} seconds")
+    exit(0)
     chassis = get_chassis_settings(config)
     pid = get_pid_settings(config)
     temp_source = get_temp_source(config)
