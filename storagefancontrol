@@ -512,7 +512,7 @@ def send_to_graphite(dataset, settings):
 
 def read_config():
     """ Main"""
-    config_file = "/etc/storagefancontrol.yaml"
+    config_file = os.environ.get("SFC_CONFIG_FILE", "/etc/storagefancontrol.yaml")
     with open(config_file, 'r') as f:
         conf = yaml.safe_load(f)
     return conf
